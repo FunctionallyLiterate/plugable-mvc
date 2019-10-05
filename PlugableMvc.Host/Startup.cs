@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PlugableMvc.Events;
+using PlugableMvc.Everything;
 using PlugableMvc.Host.Events;
 using PlugableMvc.Hosting.Plugins;
 using PlugableMvc.Hosting.Startup;
@@ -25,15 +26,14 @@ namespace PlugableMvc.Host
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                //.AddPluginLocator(new StaticPluginLocator(plugins => {
-                //    plugins.Add(new SandboxPlugin());
+                //.AddPluginLocator(new StaticPluginLocator(plugins =>
+                //{
+                //    plugins.Add(new EverythingPlugin());
                 //}))
                 .AddPluginLocator(new ReferencedPluginLocator())
-                //.AddPluginLocator(new DirectoryPluginLocator(_host.WebRootFileProvider))
                 .AddMvc()
                 .AddPlugableMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -41,25 +41,10 @@ namespace PlugableMvc.Host
             services.RegisterEventHandler<TestHandler>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
             app.UsePlugableMvc();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
