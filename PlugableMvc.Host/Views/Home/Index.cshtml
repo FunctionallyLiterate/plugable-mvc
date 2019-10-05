@@ -1,0 +1,13 @@
+﻿@using Microsoft.Extensions.FileProviders
+@model IFileProvider
+
+
+<h2>Folder Contents</h2>
+
+<ul>
+    @foreach (var dir in Model.GetDirectoryContents(""))
+    {
+        <li><strong>@dir.Name</strong></li>
+    }
+
+</ul>
