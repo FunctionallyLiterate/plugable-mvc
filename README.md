@@ -31,3 +31,9 @@ This package also provides two implementations of IPluginLocator.cs that can be 
 A plugin you can add to any PlugableMvc application that adds a lightweight pubish/subscribe event system to your application.  
 This allows the code in your application to define events and event handlers that can be broadcasted and handled.  This makes it easier 
 for code in your plugins or application to communicate with one another, if you're into that sort of thing.  
+
+## Examples
+#### Coming Soon!
+For now, you can look at the PlugableMvc.Everything plugin as an example of a plugin.
+Also, you can refer to PlugableMvc.Host for an example of using PlugableMvc in a .Net Core 2.2 MVC application.
+In the future there will be better examples.
