@@ -1,4 +1,4 @@
-# Plugable Mvc
+# Plugable Mvc ![Travis CI](https://api.travis-ci.org/functionallyliterate/plugable-mvc.svg?branch=master "Travis CI")
 A lightweight, flexible, and extensible modular framework for building .Net Core Mvc applications
 
 ## Introduction
